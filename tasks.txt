@@ -1,0 +1,4 @@
+Mathematik;Matrizen wiederholen;2026-06-12;HIGH;OPEN
+Deutsch;Präsentation vorbereiten;2026-06-15;MEDIUM;OPEN
+Java;Javadoc schreiben;2026-06-11;HIGH;OPEN
+Mathe;4.1;2026-06-17;LOW;OPEN

@@ -1,0 +1,130 @@
+@startuml
+title Smart Study Planner - UML Klassendiagramm
+
+package "at.school.smartstudyplanner" {
+    class Main {
+        +main(args: String[]): void
+    }
+}
+
+package "model" {
+    enum Priority {
+        LOW
+        MEDIUM
+        HIGH
+    }
+
+    enum TaskStatus {
+        OPEN
+        DONE
+    }
+
+    class StudyTask {
+        -subject: String
+        -title: String
+        -dueDate: LocalDate
+        -priority: Priority
+        -status: TaskStatus
+
+        +StudyTask(subject: String, title: String, dueDate: LocalDate, priority: Priority, status: TaskStatus)
+        +isUrgent(): boolean
+        +toFileLine(): String
+        +fromFileLine(line: String): StudyTask
+        +getSubject(): String
+        +setSubject(subject: String): void
+        +getTitle(): String
+        +setTitle(title: String): void
+        +getDueDate(): LocalDate
+        +setDueDate(dueDate: LocalDate): void
+        +getPriority(): Priority
+        +setPriority(priority: Priority): void
+        +getStatus(): TaskStatus
+        +setStatus(status: TaskStatus): void
+    }
+}
+
+package "service" {
+    class TaskManager {
+        -tasks: List<StudyTask>
+        -storage: TaskStorage
+
+        +TaskManager(storage: TaskStorage)
+        +addTask(task: StudyTask): void
+        +deleteTask(task: StudyTask): void
+        +markTaskAsDone(task: StudyTask): void
+        +updateTasks(): void
+        +getAllTasks(): List<StudyTask>
+        +getFilteredTasks(searchText: String, filter: String): List<StudyTask>
+        +getTotalCount(): int
+        +getOpenCount(): int
+        +getDoneCount(): int
+        +getUrgentCount(): int
+        +saveTasks(): void
+        +loadTasks(): void
+        +createDemoTasks(): void
+    }
+}
+
+package "storage" {
+    class TaskStorage {
+        -fileName: String
+
+        +TaskStorage(fileName: String)
+        +save(tasks: List<StudyTask>): void
+        +load(): List<StudyTask>
+    }
+}
+
+package "ui" {
+    class MainFrame {
+        -manager: TaskManager
+        -tableModel: TaskTableModel
+        -taskTable: JTable
+        -searchField: JTextField
+        -filterBox: JComboBox<String>
+        -statsLabel: JLabel
+
+        +MainFrame(manager: TaskManager)
+        -setupFrame(): void
+        -setupLayout(): void
+        -refreshTable(): void
+        -updateStats(): void
+        -addTask(): void
+        -editSelectedTask(): void
+        -deleteSelectedTask(): void
+        -markSelectedTaskDone(): void
+        -showTaskDialog(existingTask: StudyTask): StudyTask
+        -showMessage(message: String): void
+    }
+
+    class TaskTableModel {
+        -columns: String[]
+        -tasks: List<StudyTask>
+
+        +TaskTableModel()
+        +setTasks(tasks: List<StudyTask>): void
+        +getTaskAt(row: int): StudyTask
+        +getRowCount(): int
+        +getColumnCount(): int
+        +getColumnName(column: int): String
+        +getValueAt(rowIndex: int, columnIndex: int): Object
+    }
+}
+
+Main --> TaskManager
+Main --> TaskStorage
+Main --> MainFrame
+
+StudyTask --> Priority
+StudyTask --> TaskStatus
+
+TaskManager --> StudyTask
+TaskManager --> TaskStorage
+
+TaskStorage --> StudyTask
+
+MainFrame --> TaskManager
+MainFrame --> TaskTableModel
+TaskTableModel --> StudyTask
+
+@enduml
