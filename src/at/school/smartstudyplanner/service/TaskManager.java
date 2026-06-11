@@ -194,4 +194,20 @@ public class TaskManager {
         addTask(new StudyTask("Deutsch", "Präsentation vorbereiten", LocalDate.now().plusDays(5), Priority.MEDIUM, TaskStatus.OPEN));
         addTask(new StudyTask("Java", "Javadoc schreiben", LocalDate.now().plusDays(1), Priority.HIGH, TaskStatus.OPEN));
     }
+    /**
+     * Gibt die Anzahl der Aufgaben mit hoher Priorität zurück.
+     *
+     * @return Anzahl der Aufgaben mit hoher Priorität.
+     */
+    public int getHighPriorityCount() {
+        int count = 0;
+
+        for (StudyTask task : tasks) {
+            if (task.getPriority() == Priority.HIGH) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
