@@ -59,6 +59,7 @@ package "service" {
         +getOpenCount(): int
         +getDoneCount(): int
         +getUrgentCount(): int
+        +getHighPriorityCount(): int
         +saveTasks(): void
         +loadTasks(): void
         +createDemoTasks(): void
