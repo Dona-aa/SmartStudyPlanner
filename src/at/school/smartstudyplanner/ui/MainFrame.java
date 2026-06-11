@@ -165,6 +165,7 @@ public class MainFrame extends JFrame {
                         + " | Offen: " + manager.getOpenCount()
                         + " | Erledigt: " + manager.getDoneCount()
                         + " | Dringend: " + manager.getUrgentCount()
+                        + " | Hohe Priorität: " + manager.getHighPriorityCount()
         );
     }
 
