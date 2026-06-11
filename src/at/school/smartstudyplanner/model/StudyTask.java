@@ -54,14 +54,18 @@ public class StudyTask {
     /**
      * Prüft, ob eine Aufgabe dringend ist.
      * Eine Aufgabe gilt als dringend, wenn sie offen ist und innerhalb
-     * der nächsten drei Tage fällig wird.
+     * der nächsten drei Tage fällig ist oder bereits überfällig ist.
      *
      * @return true, wenn die Aufgabe dringend ist, sonst false.
      */
     public boolean isUrgent() {
         LocalDate today = LocalDate.now();
         LocalDate limit = today.plusDays(3);
-        return status == TaskStatus.OPEN && !dueDate.isAfter(limit);
+
+        boolean isOpen = status == TaskStatus.OPEN;
+        boolean isDueSoonOrOverdue = !dueDate.isAfter(limit);
+
+        return isOpen && isDueSoonOrOverdue;
     }
 
     /**
