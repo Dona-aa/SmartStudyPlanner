@@ -42,6 +42,11 @@ Angezeigt werden Gesamtanzahl, offene Aufgaben, erledigte Aufgaben und dringende
 Das Projekt soll mit Git organisiert werden.
 Es gibt einen Master-Branch, einen Devil-Branch und eigene Feature-Branches für die Teammitglieder.
 
+### Ziel 9: Prioritätsübersicht
+
+Das Programm soll Aufgaben mit hoher Priorität erkennen und in der Statistik anzeigen.
+Dadurch sieht der Benutzer schneller, welche Aufgaben besonders wichtig sind.
+
 ## Nicht-Ziele
 
 ### Nicht-Ziel 1: Keine Online-Synchronisation
